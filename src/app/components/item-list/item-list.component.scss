@@ -1,0 +1,88 @@
+.panel-header {
+    .header-wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+        .header-text-container {
+            display: flex;
+            flex-direction: row;
+            .header-text {
+                margin: 0 4px;
+                display: flex;
+                align-items: center;
+                &.title {
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+                &.description {
+                    font-size: 16px;
+                }
+            }
+        }
+        .button {
+            margin-right: 12px;
+            cursor: pointer;
+            background: #ACACAC;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+    }
+}
+
+.devider {
+    width: 100%;
+    height: 1px;
+    background: #ACACAC;
+}
+
+.criteria-wrapper {
+    padding: 8px 4px;
+    .criteria-container {
+        &:not(.last-item) {
+            margin-bottom: 18px;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .sub-title {
+            font-size: 12px;
+        }
+        .scores-wrapper {
+            .score-container {
+                display: flex;
+                flex-direction: row;
+               .score {
+                    font-size: 14px;
+                    &.title {
+                        font-weight: 500;
+                        margin-right: 4px;
+                    }
+                } 
+            }
+        }
+    }
+}
+
+.answers-wrapper {
+    .answer-container {
+        display: flex;
+        flex-direction: row;
+        margin: 8px 0;
+        .title {
+            font-weight: 500;
+        }
+        .sub-title {
+            margin-left: 4px;
+        }
+    }
+    .result-text {
+        font-size: 16px;
+        font-weight: 500;
+        color: #a4c639;
+    }
+}

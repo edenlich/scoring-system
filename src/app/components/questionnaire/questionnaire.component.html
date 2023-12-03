@@ -1,0 +1,22 @@
+<div class="test-title-wrapper">
+    <p class="test-title">{{ testToAnswer.name }}</p>
+    <p class="test-subtitle">{{ testToAnswer.description }}</p>
+</div>
+<form [formGroup]="resultEntryForm" (ngSubmit)="submit()">
+    <div class="input-wrapper">
+        <label for="name" class="title">Company Name</label>
+        <input type="text" id="name" formControlName="companyName" class="input" required>
+    </div>
+    <div formArrayName="answers" class="criterias-wrapper">
+        <div class="criteria-container" *ngFor="let criteria of testToAnswer.criterias; let i = index">
+            <p class="title">{{ i + 1 }}. {{ criteria.question }}</p>
+            <p class="sub-title">weight: {{ criteria.weight }}</p>
+            <mat-radio-group aria-label="Select an option">
+                <div class="radio-buttons-container" *ngFor="let score of criteria.scores; let j = index">
+                    <input type="radio" [value]="j" [formControlName]="i"> {{ score }}
+                </div>
+            </mat-radio-group>
+        </div>
+    </div>
+    <button type="submit" class="button-submit">Save</button>
+</form>

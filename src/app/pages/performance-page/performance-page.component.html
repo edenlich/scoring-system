@@ -1,0 +1,3 @@
+<app-page-title [text]="'All Performed Tests'"></app-page-title>
+<app-item-list [items$]="results$" [type]="'result'" (onTakeTest)="takeTest($event)"></app-item-list>
+

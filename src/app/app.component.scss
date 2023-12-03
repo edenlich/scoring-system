@@ -1,0 +1,10 @@
+.warpper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .content-wrapper {
+        height: 100%;
+        padding: 8px 16px;
+    }
+}

@@ -1,0 +1,43 @@
+<mat-accordion class="example-headers-align">
+    <section  *ngFor="let item of (items$ | async); let i=index">
+        <mat-expansion-panel [expanded]="step === i" (opened)="setStep(i)">
+            <mat-expansion-panel-header class="panel-header">
+                <div class="header-wrapper">
+                    <div class="header-text-container">
+                        <p class="title header-text">{{item.name}}</p>
+                        <p class="dot header-text">•</p>
+                        <p class="description header-text">{{item.description}}</p>
+                        <p class="dot header-text" *ngIf="type === 'result'">•</p>
+                        <p class="company header-text" *ngIf="type === 'result'">{{ item.companyName }}</p>
+                    </div>
+                    <button *ngIf="DisplayTakeTest" (click)="takeTest(item.id || item.testId)" class="button">Take Test</button>
+                </div>
+            </mat-expansion-panel-header>
+            
+            <div class="devider"></div>
+            <div class="test-container" *ngIf="type === 'test'; else result">
+                <div class="criteria-wrapper">
+                    <div class="criteria-container" *ngFor="let criteria of item.criterias; let j=index" [class.last-item]="j === item.criterias.length - 1">
+                        <p class="title">{{ j+1 }}. {{criteria.question}}</p>
+                        <p class="sub-title">weight: {{ criteria.weight }}</p>
+                        <div class="scores-wrapper">
+                            <div class="score-container" *ngFor="let score of criteria.scores; let index=index">
+                                <p class="score title">{{((index + 1) + 9).toString(36).toUpperCase()}}. score = {{ index + 1 }}:</p>
+                                <p class="score sub-title">{{ score }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template #result>
+                <div class="answers-wrapper">
+                    <div class="answer-container" *ngFor="let answer of item.answers; let j=index" [class.last-item]="j === item.answers.length - 1">
+                        <p class="title">{{ j+1 }}. {{ answer.question}} ({{ answer.weight }}):</p>
+                        <p class="sub-title">{{ answer.answer }} ({{ answer.score }})</p>
+                    </div>
+                    <p class="result-text">Test Result: {{ item.result | number }}</p>
+                </div>
+            </ng-template>
+        </mat-expansion-panel>
+    </section>
+</mat-accordion>

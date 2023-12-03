@@ -1,0 +1,2 @@
+<app-page-title [text]="'Defined Tests'" [buttonText]="'Define New Test'" (onButtonClick)="onDefineTest()"></app-page-title>
+<app-item-list [items$]="tests$" [DisplayTakeTest]="true" (onTakeTest)="onTakeTest($event)"></app-item-list>

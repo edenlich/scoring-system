@@ -1,0 +1,15 @@
+<app-page-title 
+[text]="'Result Entry'" 
+[buttonText]="testToAnswer ? 'back' : null" 
+(onButtonClick)="back()"></app-page-title>
+
+<app-item-list 
+*ngIf="!testId; else questionnaire" 
+[items$]="tests$" 
+[DisplayTakeTest]="true" 
+(onTakeTest)="onTakeTest($event)"></app-item-list>
+
+<ng-template #questionnaire>
+    <app-questionnaire [resultEntryForm]="resultEntryForm" [testToAnswer]="testToAnswer" (onSubmit)="submit($event)"></app-questionnaire>
+    <p *ngIf="testSumResult" class="result">result: {{ testSumResult | number }}</p>
+</ng-template>

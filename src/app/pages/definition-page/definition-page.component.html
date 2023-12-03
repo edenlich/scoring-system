@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+    <app-page-title [text]="'Define A New Test'"></app-page-title>
+    <div class="form-wrapper">
+        <form [formGroup]="TestGroup" (ngSubmit)="submit()">
+            <div class="input-wrapper">
+                <label for="name" class="title">Name</label>
+                <input type="text" id="name" formControlName="name" class="input" required>
+                <p class="error-text" *ngIf="errors.name.display">{{ errors.name.error }}</p>
+            </div>
+            <div class="input-wrapper">
+                <label for="description" class="title">Description</label>
+                <input type="text" id="description" formControlName="description" class="input">
+            </div>
+            <div class="sub-title-wrapper">
+                <div class="text">
+                    <p class="sub-title">Criterias</p>
+                    <button type="button" (click)="addNewCriteria()" class="button">+ Add New Criteria</button>
+                </div>
+                <p class="error-text" *ngIf="errors.criteria.display">{{ errors.criteria.error }}</p>
+                <p class="error-text" *ngIf="errors.weight.display">{{ errors.weight.error }}</p>
+            </div>
+            <section formArrayName="criterias">
+                <div class="criterias-wrapper" *ngFor="let criteria of criterias.controls; let i = index" [formGroupName]="i">
+                    <div class="criteria-top-container">
+                        <div class="input-wrapper">
+                            <label for="question" class="title">Question</label>
+                            <input type="text" id="question" formControlName="question" class="input">
+                        </div>            
+                        <div class="input-wrapper">
+                            <label for="weight" class="title">Weight</label>
+                            <input type="number" id="weight" formControlName="weight" class="input">
+                        </div>   
+                    </div>
+                    <div class="scores-wrapper" formArrayName="scores">
+                        <div class="score-container" *ngFor="let score of scoreArray; let j = index">
+                            <div class="input-wrapper">
+                                <label for="score" class="title">Score = {{ j + 1}}</label>
+                                <input type="text" id="score" class="input" [formControlName]="j">
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="devider" *ngIf="i !== criterias.controls?.length - 1"></div>
+                </div>
+            </section>
+            <div class="buttons-conatiner">
+                <button type="submit" class="button-submit">Save</button>
+                <button type="button" (click)="clear()" class="button-clear">Clear</button>
+            </div>
+        </form>
+    </div>
+</div>
